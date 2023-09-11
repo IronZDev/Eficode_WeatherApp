@@ -8,3 +8,7 @@ node_modules
 *.log
 
 .vscode
+
+frontend/dist
+
+.env
