@@ -7,6 +7,7 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 ## Prerequisites
 
 * An [openweathermap](http://openweathermap.org/) API key.
+* NodeJS LTS <18.17.1 (16.20.2 Reccomended)
 
 ## Returning your solution
 
