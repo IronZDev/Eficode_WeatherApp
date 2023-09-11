@@ -7,7 +7,27 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 ## Prerequisites
 
 * An [openweathermap](http://openweathermap.org/) API key.
-* NodeJS LTS <18.17.1 (16.20.2 Reccomended)
+* NodeJS LTS <18.17.1 (16.20.2 Reccomended) - for running without Docker
+
+## Commands (Docker)
+### Production
+`docker build -t weatherapp_backend . && docker run -e APPID=[YOUR_OPENWEATHER_API_KEY] --rm -i -p 9000:9000 --name weatherapp_backend -t weatherapp_backend` - Build and start backend.
+
+### Dev environment
+`docker build --build-arg ENV=dev -t weatherapp_backend . && docker run -e APPID=[YOUR_OPENWEATHER_API_KEY] --rm -i -p 9000:9000 --name weatherapp_backend -t weatherapp_backend` - Build and start backend
+
+## Commands (Without Docker)
+### Backend
+`cd backend` - Navigate to backend directory
+`npm install` - Install all requirements for backend
+`npm start` - Start the server in production mode
+`npm run dev` - Start the server in dev mode (MacOS/Linux)
+`npm run dev-win` - Start the server in dev mode (Windows)
+`npm run lint` - Run linter for all files
+### Frontend
+
+---
+# ORIGINAL EXERCISE INSTRUCTIONS
 
 ## Returning your solution
 
