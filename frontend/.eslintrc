@@ -1,14 +1,19 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": ["plugin:react/recommended", "airbnb"],
   "env": {
     "es6": true,
     "node": true
   },
   "rules": {
     "semi": ["error", "always"],
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": ["error", "always-multiline"],
+    "quotes": ["error", "single"],
+    "no-multi-spaces": ["error"]
   },
+  "plugins": [
+    "react"
+  ],
   "globals": {
     "fetch": false,
     "document": true
