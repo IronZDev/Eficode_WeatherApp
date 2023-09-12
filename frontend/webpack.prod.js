@@ -11,9 +11,12 @@ const GLOBALS = {
 };
 
 module.exports = {
-  mode: 'development',
-  cache: true,
-  devtool: 'cheap-module-eval-source-map',
+  mode: 'production',
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
   entry: {
     main: ['@babel/polyfill', path.join(__dirname, 'src/index.jsx')],
   },
@@ -21,15 +24,8 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     modules: ['src', 'node_modules'],
   },
-  devServer: {
-    contentBase: 'src/public',
-    historyApiFallback: true,
-    disableHostCheck: true,
-    host: process.env.HOST || '127.0.0.1',
-    port: process.env.PORT || 8000,
-  },
   output: {
-    filename: '[name].[hash:8].js',
+    filename: '[name].js',
     publicPath: '/',
   },
   module: {
