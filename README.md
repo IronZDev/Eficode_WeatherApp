@@ -18,20 +18,21 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 
 ## Commands (Without Docker)
 ### Backend
-`cd backend` - Navigate to backend directory
-`npm install` - Install all requirements for backend
-`npm start` - Start the server in production mode
-`npm run dev` - Start the server in dev mode (MacOS/Linux)
-`npm run dev-win` - Start the server in dev mode (Windows)
-`npm run lint` - Run linter for all files
+- `cd backend` - Navigate to backend directory
+- `npm install` - Install all requirements for backend
+- `npm start` - Start the server in production mode
+- `npm run dev` - Start the server in dev mode (MacOS/Linux)
+- `npm run dev-win` - Start the server in dev mode (Windows)
+- `npm run lint` - Run linter for all files
 ### Frontend
-`cd frontend` - Navigate to backend directory
-`npm install` - Install all requirements for backend
-`npm start` - Start the server in dev mode
-`npm run build` - Build production static web-app (created in dist)
-`npm run dev` - Start the server in dev mode (MacOS/Linux)
-`npm run dev-win` - Start the server in dev mode (Windows)
-`npm run lint` - Run linter for all files
+- `cd frontend` - Navigate to backend directory
+- `npm install` - Install all requirements for backend
+- `npm start` - Start the server in dev mode
+- `npm run build` - Build production static web-app (created in dist)
+- `npm run dev` - Start the server in dev mode (MacOS/Linux)
+- `npm run dev-win` - Start the server in dev mode (Windows)
+- `npm run lint` - Run linter for all files
+
 ---
 # ORIGINAL EXERCISE INSTRUCTIONS
 
