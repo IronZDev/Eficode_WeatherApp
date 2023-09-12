@@ -1,0 +1,15 @@
+# Use Node 16 LTS
+FROM node:16
+# Declare build args with defaults
+ARG PORT=9000
+# Create app directory
+WORKDIR /usr/src/app
+COPY package*.json ./
+# Install npm packages
+RUN npm install
+# Bundle app source
+COPY . .
+# Expose desired port
+EXPOSE $PORT
+# Excec command
+CMD npm start;

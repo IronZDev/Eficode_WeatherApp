@@ -1,0 +1,48 @@
+version: "3.8"
+
+x-app: &default-app
+  healthcheck:
+    interval: "60s"
+    timeout: "3s"
+    start_period: "5s"
+    retries: 3
+
+services:
+  backend:
+    env_file:
+      - ./backend/.env.dev
+    <<: *default-app
+    container_name: backend-dev
+    image: backend-dev
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile.dev
+    healthcheck:
+      test: "http://127.0.0.1:9000/api/weather"
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./backend:/usr/src/app:rw
+      - /dev/null:/usr/src/app/.env.dev
+      - /dev/null:/usr/src/app/.env.prod
+
+  frontend:
+    <<: *default-app
+    env_file:
+      - ./frontend/.env.dev
+    container_name: frontend-dev
+    image: frontend-dev
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile.dev
+      args:
+       - "ENDPOINT=http://127.0.0.1:9000/api"
+    healthcheck:
+      test: "http://127.0.0.1:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./frontend:/usr/src/app:rw
+      - /dev/null:/usr/src/app/.env.dev
+      - /dev/null:/usr/src/app/.env.prod
+    tty: true

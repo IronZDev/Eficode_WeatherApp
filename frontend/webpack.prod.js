@@ -49,12 +49,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/public/index.html',
+      template: 'public/index.html',
       filename: 'index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new TransferWebpackPlugin([{ from: 'src/public' }], '.'),
+    new TransferWebpackPlugin([{ from: '../public' }], 'dist'),
     new webpack.DefinePlugin(GLOBALS),
   ],
 };
