@@ -9,7 +9,11 @@
     "semi": ["error", "always"],
     "comma-dangle": ["error", "always-multiline"],
     "quotes": ["error", "single"],
-    "no-multi-spaces": ["error"]
+    "no-multi-spaces": ["error"],
+    "no-alert":"off",
+    "react/prop-types":"off",
+    "max-len": ["error", {"code": 140, "ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true}],
+    "camelcase":"off"
   },
   "plugins": [
     "react"

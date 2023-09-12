@@ -14,7 +14,9 @@
     "lint": "eslint --ext .js --ext .jsx ."
   },
   "dependencies": {
+    "bootstrap": "^5.3.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^2.8.0",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
@@ -25,11 +27,13 @@
     "@babel/preset-react": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
+    "css-loader": "^5.2.7",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.33.2",
+    "style-loader": "^2.0.0",
     "html-webpack-plugin": "^4.4.1",
     "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^4.44.1",
