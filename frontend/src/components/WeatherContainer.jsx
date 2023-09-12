@@ -68,7 +68,7 @@ export default function WeatherContainer() {
         {weatherDataRes?.list?.length
           ? weatherDataRes.list.map((weatherData) => <WeatherCard key={weatherData.dt} weatherData={weatherData} />)
         // eslint-disable-next-line react/no-array-index-key
-          : Array(5).map((_, i) => <WeatherCard key={i} weatherData={null} />)}
+          : [...Array(5)].map((_, i) => <WeatherCard key={i} weatherData={null} />)}
       </CardGroup>
     </>
   );

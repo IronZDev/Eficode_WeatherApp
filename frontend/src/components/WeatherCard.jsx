@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { useHolderjs } from 'use-holderjs';
 import Card from 'react-bootstrap/Card';
 import Placeholder from 'react-bootstrap/Placeholder';
 
 export default function Weather({ weatherData }) {
+  useHolderjs();
   const formatNumber = (num) => num.toString().padStart(2, '0');
 
   const formatDateTime = (dt) => {
@@ -12,7 +14,7 @@ export default function Weather({ weatherData }) {
   };
   return (
     <Card style={{ minWidth: '200px' }}>
-      <Card.Img style={{ height: '100%' }} variant="top" src={weatherData?.weather[0]?.icon ? `/img/${weatherData.weather[0].icon.slice(0, -1)}.svg` : '/img/placeholder.svg'} />
+      <Card.Img style={{ height: '100%' }} variant="top" src={weatherData?.weather[0]?.icon ? `/img/${weatherData.weather[0].icon.slice(0, -1)}.svg` : 'holder.js/200x200?auto=yes&text=Loading'} />
       <Card.Body>
         {weatherData ? (
           <>
@@ -29,7 +31,7 @@ export default function Weather({ weatherData }) {
               <Placeholder xs={6} />
             </Placeholder>
             <Placeholder as={Card.Subtitle} animation="glow">
-              <Placeholder xs={7} />
+              <Placeholder xs={8} />
             </Placeholder>
           </>
         )}
