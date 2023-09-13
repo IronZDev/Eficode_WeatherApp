@@ -15,6 +15,8 @@ export default function WeatherContainer() {
       const response = await fetch(`${baseURL}/weather?latitude=${pos.lat}&longitude=${pos.lon}`);
       return response.json();
     } catch (error) {
+      // eslint-disable-next-line no-undef
+      alert(error.message);
       console.error(error);
     }
     return null;
@@ -50,10 +52,9 @@ export default function WeatherContainer() {
   useEffect(() => {
     // We have to Abort the execution if the component gets unmounted to prevent memory leaks
     const abortController = new AbortController();
-
     getCurrentLocation(abortController)
       .then((pos) => getWeatherFromApi(pos))
-      .then((data) => setWeatherDataRes(data))
+      .then((data) => { if (data) setWeatherDataRes(data); })
       .catch((err) => console.error(err.message));
     return () => { abortController.abort(); };
   }, []);
