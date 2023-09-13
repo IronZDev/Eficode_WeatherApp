@@ -5,13 +5,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const GLOBALS = {
-  'process.env.ENDPOINT': JSON.stringify(
-    process.env.ENDPOINT || 'http://127.0.0.1:9000/api',
-  ),
-};
+require('dotenv').config({ path: path.join(__dirname, './.env.prod') });
 
-module.exports = {
+module.exports = () => ({
   mode: 'production',
   performance: {
     hints: false,
@@ -68,6 +64,13 @@ module.exports = {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new CopyPlugin({ patterns: [{ from: 'public/img', to: 'img' }, { from: 'public/style.css' }] }),
-    new webpack.DefinePlugin(GLOBALS),
+    new webpack.DefinePlugin({
+      'process.env': {
+        ENDPOINT: JSON.stringify(
+          process.env.ENDPOINT || 'http://127.0.0.1:9000/api',
+        ),
+        PATH: JSON.stringify(path.join(__dirname, './.env.prod')),
+      },
+    }),
   ],
-};
+});

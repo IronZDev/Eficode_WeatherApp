@@ -3,6 +3,8 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+require('dotenv').config({ path: path.join(__dirname, './.env.dev') });
+
 const GLOBALS = {
   'process.env.ENDPOINT': JSON.stringify(
     process.env.ENDPOINT || 'http://127.0.0.1:9000/api',

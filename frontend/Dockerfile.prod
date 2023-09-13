@@ -1,8 +1,6 @@
 # Use Node 16 LTS
 FROM node:16 AS build
 
-ARG ENDPOINT=127.0.0.1
-ENV ENDPOINT=${ENDPOINT}
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 # Create app directory

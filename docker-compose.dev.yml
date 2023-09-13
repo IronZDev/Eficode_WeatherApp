@@ -28,21 +28,15 @@ services:
 
   frontend:
     <<: *default-app
-    env_file:
-      - ./frontend/.env.dev
     container_name: frontend-dev
     image: frontend-dev
     build:
       context: ./frontend
       dockerfile: ./Dockerfile.dev
-      args:
-       - "ENDPOINT=http://127.0.0.1:9000/api"
     healthcheck:
       test: "http://127.0.0.1:8000"
     ports:
       - "8000:8000"
     volumes:
       - ./frontend:/usr/src/app:rw
-      - /dev/null:/usr/src/app/.env.dev
-      - /dev/null:/usr/src/app/.env.prod
     tty: true
