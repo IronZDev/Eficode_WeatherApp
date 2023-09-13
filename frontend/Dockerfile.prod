@@ -1,5 +1,5 @@
 # Use Node 16 LTS
-FROM node:16 as build
+FROM node:16 AS build
 
 ARG ENDPOINT=127.0.0.1
 ENV ENDPOINT=${ENDPOINT}
@@ -16,17 +16,16 @@ COPY . .
 RUN npm run build
 
 # Bundle static assets with nginx
-FROM nginx:stable as expose
+FROM nginx:stable AS expose
 ENV NODE_ENV=production
-WORKDIR /usr/src/app
 # Copy built assets
-COPY /dist /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 
 # Add your nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
-EXPOSE 8000
+EXPOSE 80
 
 # Start nginx
 CMD nginx -g "daemon off;"

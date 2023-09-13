@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const TransferWebpackPlugin = require('transfer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const GLOBALS = {
   'process.env.ENDPOINT': JSON.stringify(
@@ -31,6 +32,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /.*css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /.*(jpg|jpeg|png|svg)$/,
+        use: ['file-loader'],
+      },
+      {
         test: /\.(js|jsx)$/,
         include: path.resolve(__dirname, 'src'),
         loader: 'babel-loader',
@@ -48,13 +60,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
+      inject: true,
       filename: 'index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new TransferWebpackPlugin([{ from: '../public' }], 'dist'),
+    new CopyPlugin({ patterns: [{ from: 'public/img', to: 'img' }, { from: 'public/style.css' }] }),
     new webpack.DefinePlugin(GLOBALS),
   ],
 };

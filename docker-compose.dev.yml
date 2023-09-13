@@ -6,8 +6,6 @@ x-app: &default-app
     timeout: "3s"
     start_period: "5s"
     retries: 3
-  env:
-    - NODE_ENV=development
 
 services:
   backend:

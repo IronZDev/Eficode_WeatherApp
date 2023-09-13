@@ -34,6 +34,8 @@
     "babel-jest": "^29.7.0",
     "babel-loader": "^8.1.0",
     "canvas": "^2.11.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^6.4.1",
     "css-loader": "^5.2.7",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -47,7 +49,6 @@
     "jest-fetch-mock": "^3.0.3",
     "regenerator-runtime": "^0.14.0",
     "style-loader": "^2.0.0",
-    "transfer-webpack-plugin": "^0.1.4",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"

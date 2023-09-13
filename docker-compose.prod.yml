@@ -9,8 +9,6 @@ x-app: &default-app
     timeout: "3s"
     start_period: "5s"
     retries: 3
-  env:
-    - NODE_ENV=production
 
 services:
   backend:
@@ -46,8 +44,4 @@ services:
       test: "http://127.0.0.1/"
     ports:
       - "8000:80"
-    volumes:
-      - ./frontend:/usr/src/app:rw
-      - /dev/null:/usr/src/app/.env.dev
-      - /dev/null:/usr/src/app/.env.prod
     tty: true
