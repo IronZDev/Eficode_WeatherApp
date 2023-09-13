@@ -22,8 +22,7 @@ app.use(cors());
 const fetchWeather = async (latitude, longitude, dataPointsToFetch) => {
   const endpoint = `${mapURI}/forecast?lat=${latitude}&lon=${longitude}&units=metric&cnt=${dataPointsToFetch}&appid=${appId}`;
   const response = await fetch(endpoint);
-
-  return response ? response.json() : {};
+  return response?.body ? response.json() : {};
 };
 
 router.get('/api/weather', async (ctx) => {
@@ -31,15 +30,24 @@ router.get('/api/weather', async (ctx) => {
   const latitude = queryParams?.latitude || 51.7;
   const longitude = queryParams?.longitude || 19.4;
   const dataPointsToFetch = queryParams?.dataPointsToFetch || 40; // In free plan of OpenWeatherMap the highest value 40 (5 days, every 3 hours)
-  const weatherData = await fetchWeather(latitude, longitude, dataPointsToFetch);
-
-  ctx.type = 'application/json; charset=utf-8';
-  ctx.body = weatherData;
+  try {
+    const weatherData = await fetchWeather(latitude, longitude, dataPointsToFetch);
+    ctx.type = 'application/json; charset=utf-8';
+    ctx.body = weatherData;
+  } catch (err) {
+    ctx.status = 503;
+    ctx.type = 'application/json; charset=utf-8';
+    ctx.body = {err: err.message};
+  }
 });
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(port);
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port);
+  console.log(`App listening on port ${port}`);
+}
 
-console.log(`App listening on port ${port}`);
+
+module.exports = app;

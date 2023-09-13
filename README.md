@@ -16,7 +16,7 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 ### Dev environment
 `docker compose -f .\docker-compose.dev.yml build && docker-compose -f docker-compose.dev.yml up` - Build and start both backend and frontend (with hot reload enabled)
 
-## Commands (Without Docker)
+## Commands
 ### Backend
 - `cd backend` - Navigate to backend directory
 - `npm install` - Install all requirements for backend
@@ -24,6 +24,7 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 - `npm run dev` - Start the server in dev mode (MacOS/Linux)
 - `npm run dev-win` - Start the server in dev mode (Windows)
 - `npm run lint` - Run linter for all files
+- `npm run test` - Run unit tests
 ### Frontend
 - `cd frontend` - Navigate to backend directory
 - `npm install` - Install all requirements for backend
@@ -32,7 +33,10 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 - `npm run dev` - Start the server in dev mode (MacOS/Linux)
 - `npm run dev-win` - Start the server in dev mode (Windows)
 - `npm run lint` - Run linter for all files
+- `npm run test` - Run unit tests
 
+
+---
 ---
 # ORIGINAL EXERCISE INSTRUCTIONS
 
