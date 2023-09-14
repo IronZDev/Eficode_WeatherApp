@@ -14,7 +14,18 @@ export default function Weather({ weatherData }) {
   };
   return (
     <Card style={{ minWidth: '200px' }} data-testid="weather-card">
-      <Card.Img data-testid="weather-card-img" style={{ height: '100%' }} variant="top" src={weatherData?.weather[0]?.icon ? `/img/${weatherData.weather[0].icon.slice(0, -1)}.svg` : 'holder.js/200x200?auto=yes&text=Loading'} />
+      <Card.Img
+        data-testid="weather-card-img"
+        style={{
+          height: '100%',
+          filter: 'invert(1)',
+          backgroundColor: 'silver',
+          border: '2px solid gray',
+          borderRadius: '5px',
+        }}
+        variant="top"
+        src={weatherData?.weather[0]?.icon ? `/img/${weatherData.weather[0].icon.slice(0, -1)}.svg` : 'holder.js/200x200?auto=yes&text=Loading'}
+      />
       <Card.Body>
         {weatherData ? (
           <>

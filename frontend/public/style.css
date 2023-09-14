@@ -1,0 +1,9 @@
+.custom-card {
+    background-color: #151618 !important;
+    @media (min-width: 576px) {
+        position: absolute !important;
+        top: 50% !important;
+        width: 100vw;
+        transform: translateY(-50%) !important;
+    }
+}
