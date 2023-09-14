@@ -4,10 +4,16 @@ There was a beautiful idea of building an app that would show the upcoming weath
 
 Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us from installing the tools on our computer, and making sure the app looks (and is) the same in development and in production. All we need is someone to add the few missing files!
 
+---
+### Deployed app [link](https://frontend-image-v2aqbqbh2a-od.a.run.app)
+
+---
+
 ## Prerequisites
 
 * An [openweathermap](http://openweathermap.org/) API key.
 * NodeJS LTS <18.17.1 (16.20.2 Reccomended) - for running without Docker
+
 
 ## Commands (Docker)
 ### Production
@@ -34,6 +40,43 @@ Luckily we now have [docker compose](https://docs.docker.com/compose/) saving us
 - `npm run dev-win` - Start the server in dev mode (Windows)
 - `npm run lint` - Run linter for all files
 - `npm run test` - Run unit tests
+
+## Deploy to Google Cloud - Cloud Run
+### Prerequisities
+* Set up local shell - [Guide](https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images#local-shell)
+* Set up docker respository in Google Artifact Registry - [Guide](https://cloud.google.com/artifact-registry/docs/docker/store-docker-container-images#create)
+### Deployment instruction
+1. Build containers in production mode:
+
+    `docker-compose -f .\docker-compose.prod.yml build`
+2. Set tags for backend:
+
+    `docker tag backend {region}-docker.pkg.dev/{project}/{repository}/backend-image`
+3. Push backend image to Google Cloud Artifact Registry:
+
+    `docker push {region}-docker.pkg.dev/{project}/{repository}/backend-image`
+4. Deploy backend image in Cloud Run:
+    - Go to Cloud Run dashboard
+    - Click Create service
+    - Choose uploaded image from Artifact Registry
+    - Set port to 9000
+    - Confirm
+5. Copy deployed backend URL to ENDPOINT variable in `frontend/.env.prod` 
+6. Build containers in production mode:
+
+    `docker-compose -f .\docker-compose.prod.yml build`
+7. Set tags for frontend:
+
+    `docker tag frontend {region}-docker.pkg.dev/{project}/{repository}/frontend-image`
+8. Push frontend image to Google Cloud Artifact Registry:
+
+    `docker push {region}-docker.pkg.dev/{project}/{repository}/frontend-image`
+9. Deploy frontend image in Cloud Run:
+    - Go to Cloud Run dashboard
+    - Click Create service
+    - Choose uploaded image from Artifact Registry
+    - Set port to 90
+    - Confirm
 
 
 ---
