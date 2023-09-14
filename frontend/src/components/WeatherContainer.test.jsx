@@ -1,6 +1,6 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
 import WeatherContainer from './WeatherContainer';
 import getWeatherMockResponse from '../mocks/getWeatherResponse.mock.json';
@@ -24,6 +24,15 @@ describe('Weather Container', () => {
     await act(async () => render(<WeatherContainer />));
     const heading = screen.getByText(/Weather for Zubardź/i);
     expect(heading).toBeInTheDocument();
+  });
+
+  it('should refresh data on button click', async () => {
+    fetchMock.mockOnce(JSON.stringify(getWeatherMockResponse));
+    jest.resetModules();
+    await act(async () => render(<WeatherContainer />));
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    expect(fetchMock.mock.calls.length).toBe(1);
   });
 
   it('should display weather cards for all data received', async () => {
